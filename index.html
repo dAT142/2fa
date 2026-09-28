@@ -123,14 +123,14 @@
 </head>
 <body class="text-sanrio-dark flex flex-col justify-between overflow-x-hidden pb-[calc(5.5rem+var(--safe-bottom))] md:pb-10 custom-scroll">
 
-  <!-- ==================== HIỆU ỨNG TRANG TRÍ HẬU CẢNH ==================== -->
+  <!-- Hiệu ứng trang trí -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
     <div class="absolute -top-12 -left-12 w-64 md:w-80 h-64 md:h-80 bg-sanrio-pink/25 rounded-full blur-3xl animate-float"></div>
     <div class="absolute top-1/2 -right-12 w-72 md:w-96 h-72 md:h-96 bg-sanrio-yellow/30 rounded-full blur-3xl animate-float" style="animation-delay: 1.5s;"></div>
     <div class="absolute -bottom-10 left-1/3 w-64 md:w-80 h-64 md:h-80 bg-pink-300/25 rounded-full blur-3xl animate-float" style="animation-delay: 2.5s;"></div>
   </div>
 
-  <!-- ==================== THANH ĐIỀU HƯỚNG TRÊN (HEADER) ==================== -->
+  <!-- Header -->
   <header class="relative z-30 w-full max-w-6xl mx-auto px-3.5 sm:px-6 pt-3 sm:pt-6">
     <div class="glass-card rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-lg shadow-pink-200/50 flex items-center justify-between gap-2">
       
@@ -189,10 +189,10 @@
     </div>
   </header>
 
-  <!-- ==================== KHU VỰC NỘI DUNG CHÍNH (MAIN CONTAINER) ==================== -->
+  <!-- Container Nội dung Chính -->
   <main class="relative z-20 w-full max-w-6xl mx-auto px-3.5 sm:px-6 mt-3.5 sm:mt-6 flex-1">
 
-    <!-- 1. VIEW ĐĂNG NHẬP / CHỌN TÀI KHOẢN -->
+    <!-- 1. MÀN HÌNH ĐĂNG NHẬP -->
     <div id="loginView" class="w-full max-w-md mx-auto space-y-4">
       <div class="glass-card rounded-3xl p-5 sm:p-8 shadow-xl shadow-pink-200/60 transition-all">
         <div class="text-center mb-4 sm:mb-6">
@@ -240,7 +240,7 @@
       <div id="loginAdArea" class="hidden w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-md border-2 border-sanrio-border"></div>
     </div>
 
-    <!-- 2. VIEW KHÁCH HÀNG: QUẢN LÝ MÃ 2FA CÁ NHÂN -->
+    <!-- 2. GIAO DIỆN KHÁCH HÀNG: MÃ 2FA CÁ NHÂN -->
     <div id="clientView" class="hidden space-y-4">
       <div class="glass-card rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
         <div class="relative w-full sm:w-80">
@@ -283,11 +283,11 @@
       </div>
     </div>
 
-    <!-- 3. VIEW QUẢN TRỊ VIÊN (ADMIN DASHBOARD TOÀN CẦU) -->
+    <!-- 3. GIAO DIỆN ADMIN: QUẢN LÝ TOÀN BỘ KHÁCH HÀNG TRÊN MỌI IP/THIẾT BỊ -->
     <div id="adminView" class="hidden space-y-4">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
         <div class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border-l-4 border-sanrio-adminPurple">
-          <p class="text-[10px] sm:text-[11px] font-extrabold text-purple-600 uppercase tracking-wider">Tổng Khách Toàn Cầu</p>
+          <p class="text-[10px] sm:text-[11px] font-extrabold text-purple-600 uppercase tracking-wider">Tổng Khách Hàng</p>
           <h4 id="statTotalUsers" class="text-xl sm:text-2xl font-black font-display text-sanrio-dark mt-0.5">0</h4>
         </div>
         <div class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border-l-4 border-sanrio-mint">
@@ -300,11 +300,11 @@
         </div>
         <div class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border-l-4 border-sanrio-deepPink">
           <p class="text-[10px] sm:text-[11px] font-extrabold text-pink-600 uppercase tracking-wider">Đồng Bộ Cloud Multi-IP</p>
-          <h4 id="statSyncStatus" class="text-sm font-black font-display text-sanrio-dark mt-1 text-emerald-600">Đang Kiểm Tra...</h4>
+          <h4 id="statSyncStatus" class="text-sm font-black font-display text-sanrio-dark mt-1 text-emerald-600">Đang Kết Nối...</h4>
         </div>
       </div>
 
-      <!-- Cấu hình Link Firebase Realtime Database -->
+      <!-- Cấu hình Firebase Cloud -->
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl border-purple-200 space-y-4">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
@@ -312,7 +312,7 @@
               <span>🌐 Cấu Hình Đám Mây Firebase (Đồng Bộ Khách Hàng & Mã Toàn Cầu)</span>
             </h3>
             <p class="text-xs text-purple-700 font-semibold mt-0.5">
-              Dán link Realtime Database một lần duy nhất, dữ liệu khách hàng từ mọi thiết bị và IP sẽ đổ về đây.
+              Đường link kết nối Firebase Realtime Database của bạn đã được cài đặt sẵn.
             </p>
           </div>
           <button onclick="syncAllDataFromCloud(true)" class="touch-btn bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs px-3.5 py-2 rounded-2xl shadow-md transition-all self-end sm:self-auto flex items-center gap-1.5">
@@ -328,9 +328,6 @@
               Lưu & Kết Nối
             </button>
           </div>
-          <p class="text-[10px] text-purple-600 mt-1 font-semibold">
-            * Chỉ cần dán đường dẫn gốc của Firebase, hệ thống tự động đồng bộ tài khoản, mã 2FA và banner.
-          </p>
         </div>
       </div>
 
@@ -389,7 +386,7 @@
 
   </main>
 
-  <!-- ==================== CỤM NÚT TRÒN NỔI Ở GÓC MÀN HÌNH ==================== -->
+  <!-- Nút góc màn hình: Donate & Telegram -->
   <aside class="fixed bottom-[calc(4.5rem+var(--safe-bottom))] md:bottom-8 right-3 sm:right-6 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
     <button onclick="openDonateModal()" title="Ủng hộ 1 ly cafe nhé! ☕" class="touch-btn group flex items-center gap-1.5 bg-gradient-to-r from-amber-400 via-sanrio-yellow to-amber-300 hover:from-amber-500 hover:to-amber-400 text-amber-950 p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-amber-300/60 border-2 border-white animate-pulseSubtle transition-all">
       <span class="text-lg sm:text-xl">☕</span>
@@ -406,7 +403,7 @@
     </a>
   </aside>
 
-  <!-- ==================== THANH ĐIỀU HƯỚNG DƯỚI ĐÁY CHO ĐIỆN THOẠI ==================== -->
+  <!-- Mobile Bottom Navigation -->
   <nav id="mobileBottomBar" class="hidden md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-lg border-t-2 border-sanrio-border px-6 pt-2 pb-[calc(0.5rem+var(--safe-bottom))] flex items-center justify-around shadow-2xl">
     <button onclick="openManualAddModal()" class="flex flex-col items-center text-pink-600 text-[10px] font-black touch-btn">
       <div class="w-9 h-9 rounded-2xl bg-pink-100 flex items-center justify-center text-sanrio-deepPink mb-0.5 border border-pink-200">
@@ -443,9 +440,7 @@
         <button onclick="closeAdminViewVaultModal()" class="text-purple-400 hover:text-purple-700 text-2xl font-black">&times;</button>
       </div>
 
-      <div id="adminViewVaultList" class="space-y-3">
-        <!-- Render Javascript -->
-      </div>
+      <div id="adminViewVaultList" class="space-y-3"></div>
     </div>
   </div>
 
@@ -486,7 +481,7 @@
     </div>
   </div>
 
-  <!-- MODAL DONATE -->
+  <!-- MODAL DONATE CHU THI PHUONG THUY -->
   <div id="donateModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md">
     <div class="w-full max-w-sm sm:max-w-md bg-white rounded-3xl border-4 border-sanrio-pink shadow-2xl p-4 sm:p-6 text-center relative overflow-hidden max-h-[90dvh] overflow-y-auto custom-scroll animate-heartPop">
       
@@ -596,7 +591,7 @@
     </div>
   </div>
 
-  <!-- MODAL ĐỔI MÃ PIN CỦA KHÁCH -->
+  <!-- MODAL ĐỔI PIN KHÁCH -->
   <div id="userChangePinModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -725,12 +720,11 @@
 
   <!-- ==================== LOGIC JAVASCRIPT HỆ THỐNG ==================== -->
   <script>
-    /* ==================== 1. KHỞI TẠO STATE & CẤU HÌNH ĐÁM MÂY ==================== */
+    /* ==================== 1. KHỞI TẠO STATE & CẤU HÌNH CLOUD ==================== */
     const DEFAULT_ADMIN_USER = 'bodatvidai';
     const DEFAULT_ADMIN_PIN = '8888';
 
-    // 🔗 DÁN LINK FIREBASE REALTIME DATABASE CỦA BẠN VÀO GIỮA 2 DẤU NHÁY DƯỚI ĐÂY:
-    // Ví dụ: const DEFAULT_FIREBASE_URL = "https://kitty-2fa-default-rtdb.firebaseio.com";
+    // 🔗 LINK DATABASE CLOUD ĐÃ CẤU HÌNH SẴN CHO BẠN
     const DEFAULT_FIREBASE_URL = "https://kitty-2fa-default-rtdb.asia-southeast1.firebasedatabase.app";
 
     // QUẢN LÝ PHIÊN DUY TRÌ 30 NGÀY
@@ -792,7 +786,6 @@
     let html5QrScannerInstance = null;
     let totpIntervalId = null;
 
-    // Bộ nhớ cục bộ kết hợp Cloud Cache
     function getUsersDb() {
       const data = localStorage.getItem('kitty_users_db');
       if (!data) return [];
@@ -814,11 +807,10 @@
 
     function saveUserVault(username, vault) {
       localStorage.setItem(`kitty_vault_${username.toLowerCase()}`, JSON.stringify(vault));
-      // Tự động đẩy lên cloud cho khách hàng này
       syncVaultToCloud(username, vault);
     }
 
-    /* ==================== 2. HỆ THỐNG ĐỒNG BỘ MULTI-IP CLOUD (FIREBASE REST API) ==================== */
+    /* ==================== 2. HỆ THỐNG ĐỒNG BỘ MULTI-IP CLOUD ==================== */
     function getCloudSyncUrl() {
       let url = localStorage.getItem('kitty_cloud_sync_url') || DEFAULT_FIREBASE_URL;
       if (!url) return '';
@@ -834,7 +826,7 @@
       syncAllDataFromCloud(true);
     }
 
-    // Tự động kéo toàn bộ Khách hàng & Vaults từ Cloud về máy Admin
+    // Tự động kéo toàn bộ Khách hàng & Vaults từ Cloud về
     async function syncAllDataFromCloud(showNotification = false) {
       const rootUrl = getCloudSyncUrl();
       const statusLabel = document.getElementById('statSyncStatus');
@@ -904,7 +896,6 @@
       }
     }
 
-    // Đẩy 1 User lên Cloud
     async function syncUserToCloud(userObj) {
       const rootUrl = getCloudSyncUrl();
       if (!rootUrl) return;
@@ -918,7 +909,6 @@
       } catch (e) {}
     }
 
-    // Đẩy danh sách mã 2FA của 1 User lên Cloud
     async function syncVaultToCloud(username, vault) {
       const rootUrl = getCloudSyncUrl();
       if (!rootUrl) return;
@@ -1070,11 +1060,10 @@
         return;
       }
 
-      // Kiểm tra trong bộ nhớ và trên Cloud
       let users = getUsersDb();
       let user = users.find(u => u.username.toLowerCase() === usernameInput.toLowerCase());
 
-      // Nếu máy này chưa có dữ liệu của khách, thử kéo từ Cloud về
+      // Nếu máy này chưa có dữ liệu, kéo trực tiếp từ Cloud về
       if (!user) {
         const rootUrl = getCloudSyncUrl();
         if (rootUrl) {
@@ -1087,7 +1076,6 @@
                 users.push(user);
                 saveUsersDb(users);
 
-                // Kéo luôn vault của người này về máy mới
                 const resVault = await fetch(`${rootUrl}/vaults/${usernameInput.toLowerCase()}.json`);
                 if (resVault.ok) {
                   const cloudVault = await resVault.json();
@@ -1254,7 +1242,6 @@
       renderAdminAdsList();
     }
 
-    // ADMIN XEM CHI TIẾT CÁC MÃ 2FA CỦA TỪNG KHÁCH
     async function adminInspectUserVault(username) {
       document.getElementById('adminViewTargetUser').innerText = username;
       const container = document.getElementById('adminViewVaultList');
@@ -1894,7 +1881,7 @@
       }
     }
 
-    /* ==================== 14. TIỆN ÍCH & KHỞI CHẠY ==================== */
+    /* ==================== 14. TIỆN ÍCH & KHỞI CHẠY TỰ ĐỘNG ==================== */
     function showToast(msg, icon = '✨') {
       const toast = document.getElementById('toast');
       document.getElementById('toastMsg').innerText = msg;
@@ -1921,15 +1908,27 @@
       document.body.classList.remove('keyboard-open');
     });
 
-    window.addEventListener('DOMContentLoaded', () => {
+    // KHỞI ĐỘNG HỆ THỐNG & ĐỒNG BỘ CLOUD ĐA THIẾT BỊ
+    window.addEventListener('DOMContentLoaded', async () => {
       currentSession = restoreSession();
-      syncAllDataFromCloud();
+      
+      // Tự động đẩy dữ liệu cục bộ lên Cloud nếu Cloud đang trống
+      const localUsers = getUsersDb();
+      if (localUsers.length > 0) {
+        for (const u of localUsers) {
+          await syncUserToCloud(u);
+          const v = getUserVault(u.username);
+          if (v.length > 0) await syncVaultToCloud(u.username, v);
+        }
+      }
+
+      await syncAllDataFromCloud();
       setupViewForSession();
 
-      // Tự động kiểm tra và làm mới dữ liệu toàn cầu mỗi 15 giây
+      // Tự động kiểm tra dữ liệu mới từ mọi IP mỗi 10 giây
       setInterval(() => {
         syncAllDataFromCloud();
-      }, 15000);
+      }, 10000);
     });
   </script>
 
