@@ -87,7 +87,6 @@
       min-height: 100dvh;
     }
 
-    /* Chuẩn hóa font trên di động để chống auto-zoom */
     @media (pointer: coarse), (max-width: 1024px) {
       input, select, textarea {
         font-size: 16px !important;
@@ -135,7 +134,6 @@
   <header class="relative z-30 w-full max-w-6xl mx-auto px-3.5 sm:px-6 pt-3 sm:pt-6">
     <div class="glass-card rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-lg shadow-pink-200/50 flex items-center justify-between gap-2">
       
-      <!-- Brand Logo & Tên Web -->
       <div class="flex items-center gap-2 sm:gap-3.5 min-w-0">
         <div class="relative flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-2xl border-2 border-sanrio-pink flex items-center justify-center shadow-sm">
           <svg viewBox="0 0 100 85" class="w-8 h-8 sm:w-10 sm:h-10 animate-wiggle">
@@ -169,7 +167,6 @@
         </div>
       </div>
 
-      <!-- Khu vực hiển thị thông tin tài khoản & Nút thao tác -->
       <div id="authHeaderBar" class="flex items-center gap-1 sm:gap-2 flex-shrink-0">
         <button onclick="openDonateModal()" class="touch-btn bg-gradient-to-r from-amber-400 to-sanrio-yellow hover:opacity-95 text-amber-950 font-black px-2.5 py-1.5 rounded-2xl text-xs sm:text-sm shadow-sm border border-amber-300 flex items-center gap-1">
           <span>☕</span>
@@ -185,7 +182,7 @@
 
         <button id="logoutBtn" onclick="handleLogout()" class="hidden touch-btn bg-white hover:bg-pink-100 text-sanrio-deepPink border-2 border-sanrio-border font-extrabold px-2.5 py-1.5 rounded-2xl text-xs sm:text-sm shadow-sm transition-all flex items-center gap-1">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-          <span class="hidden sm:inline">Đổi tài khoản</span>
+          <span class="hidden sm:inline">Đăng xuất</span>
         </button>
       </div>
 
@@ -203,7 +200,7 @@
             <span class="text-3xl sm:text-4xl animate-bounce">🎀</span>
           </div>
           <h2 class="text-xl sm:text-2xl font-black font-display text-sanrio-dark">Chào mừng bạn!</h2>
-          <p class="text-xs text-pink-600 font-bold mt-1">Đăng nhập tài khoản hoặc tạo mới để quản lý mã 2FA riêng của bạn</p>
+          <p class="text-xs text-pink-600 font-bold mt-1">Đăng nhập một lần - Duy trì kết nối 30 ngày an toàn ✨</p>
         </div>
 
         <!-- Tab Chuyển đổi Khách Hàng / Admin -->
@@ -228,13 +225,11 @@
             <input type="password" id="loginPin" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="current-password" placeholder="••••" class="w-full bg-white/95 border-2 border-sanrio-border rounded-2xl px-4 py-2.5 font-bold tracking-widest text-center text-sanrio-dark focus:outline-none focus:border-sanrio-deepPink focus:ring-2 focus:ring-pink-200 transition-all shadow-inner">
           </div>
 
-          <!-- Nút Đăng nhập -->
           <button type="submit" class="w-full touch-btn bg-gradient-to-r from-sanrio-deepPink to-sanrio-bowRed text-white py-3 rounded-2xl font-black text-sm shadow-md shadow-pink-300 hover:opacity-95 transition-all flex items-center justify-center gap-2">
             <span>Đăng nhập ngay</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </button>
 
-          <!-- Nút Tạo tài khoản mới -->
           <div id="registerPrompt" class="text-center pt-1.5">
             <p class="text-xs font-bold text-pink-700">Chưa có tài khoản trên máy này?</p>
             <button type="button" onclick="openRegisterModal()" class="text-xs font-black text-sanrio-deepPink hover:underline mt-0.5">
@@ -244,19 +239,12 @@
         </form>
       </div>
 
-      <!-- VỊ TRÍ QUẢNG CÁO 1: MÀN HÌNH ĐĂNG NHẬP -->
-      <div id="loginAdArea" class="hidden w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-md border-2 border-sanrio-border">
-        <!-- Render Javascript -->
-      </div>
+      <div id="loginAdArea" class="hidden w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-md border-2 border-sanrio-border"></div>
     </div>
 
     <!-- 2. VIEW KHÁCH HÀNG: QUẢN LÝ MÃ 2FA CÁ NHÂN -->
     <div id="clientView" class="hidden space-y-4">
-      
-      <!-- Top Action Bar trên Máy Tính & Tablet -->
       <div class="glass-card rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-md flex flex-col sm:flex-row items-center justify-between gap-3">
-        
-        <!-- Ô Tìm kiếm nhanh -->
         <div class="relative w-full sm:w-80">
           <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-pink-400">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -264,7 +252,6 @@
           <input type="text" id="searchInput" oninput="renderTotpList()" placeholder="Tìm kiếm tài khoản..." class="w-full bg-white/95 border-2 border-sanrio-border/80 rounded-2xl pl-10 pr-4 py-2 font-bold text-sanrio-dark focus:outline-none focus:border-sanrio-deepPink transition-all">
         </div>
 
-        <!-- Các Nút Hành Động Nhanh (Desktop & Tablet) -->
         <div class="hidden md:flex items-center gap-2 w-full sm:w-auto justify-end">
           <button onclick="openQrScannerModal()" class="touch-btn bg-white hover:bg-pink-50 text-sanrio-deepPink border-2 border-sanrio-border px-3.5 py-2 rounded-2xl text-xs font-extrabold shadow-sm transition-all flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
@@ -282,21 +269,12 @@
         </div>
       </div>
 
-      <!-- VỊ TRÍ QUẢNG CÁO 2: MÀN HÌNH CHÍNH (ĐỒNG BỘ TOÀN WEB TỪ FIREBASE) -->
-      <div id="clientAdArea" class="hidden w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-md border-2 border-sanrio-border">
-        <!-- Render Javascript -->
-      </div>
+      <div id="clientAdArea" class="hidden w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-md border-2 border-sanrio-border"></div>
 
-      <!-- Danh Sách Mã 2FA (Lưới Responsive Tự Co Giãn) -->
-      <div id="totpGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        <!-- Render bằng Javascript -->
-      </div>
+      <div id="totpGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"></div>
 
-      <!-- Trạng thái trống (Empty State) -->
       <div id="emptyTotpState" class="hidden glass-card rounded-3xl p-8 sm:p-12 text-center">
-        <div class="w-16 h-16 mx-auto bg-white rounded-3xl border-2 border-sanrio-border flex items-center justify-center text-3xl shadow-sm mb-3">
-          🐱
-        </div>
+        <div class="w-16 h-16 mx-auto bg-white rounded-3xl border-2 border-sanrio-border flex items-center justify-center text-3xl shadow-sm mb-3">🐱</div>
         <h3 class="text-base sm:text-lg font-black font-display text-sanrio-dark">Chưa có mã 2FA nào!</h3>
         <p class="text-xs text-pink-600 font-bold max-w-sm mx-auto mt-1 mb-4">
           Hãy quét mã QR từ Facebook, Google, TikTok hoặc nhập Secret Key thủ công để bắt đầu.
@@ -305,13 +283,10 @@
           + Thêm Khóa Đầu Tiên
         </button>
       </div>
-
     </div>
 
     <!-- 3. VIEW QUẢN TRỊ VIÊN (ADMIN DASHBOARD) -->
     <div id="adminView" class="hidden space-y-4">
-      
-      <!-- Thẻ Thống Kê Tổng Quan -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
         <div class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border-l-4 border-sanrio-adminPurple">
           <p class="text-[10px] sm:text-[11px] font-extrabold text-purple-600 uppercase tracking-wider">Tổng Khách Hàng</p>
@@ -331,7 +306,6 @@
         </div>
       </div>
 
-      <!-- KHU VỰC DÀNH CHO ADMIN: QUẢN LÝ QUẢNG CÁO & ĐỒNG BỘ FIREBASE -->
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl border-purple-200 space-y-4">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
@@ -348,7 +322,6 @@
           </button>
         </div>
 
-        <!-- Cấu hình Link Firebase Realtime Database -->
         <div class="bg-purple-50/70 p-3 rounded-2xl border border-purple-200 text-xs">
           <label class="block font-black text-purple-900 mb-1">🔗 Link Firebase Cloud Sync API (kết thúc bằng /ads.json):</label>
           <div class="flex gap-2">
@@ -358,17 +331,13 @@
             </button>
           </div>
           <p class="text-[10px] text-purple-600 mt-1 font-semibold">
-            * Chỉ cần dán 1 lần duy nhất, dữ liệu quảng cáo sẽ được tự động đồng bộ lên Đám Mây của Google.
+            * Dữ liệu quảng cáo sẽ tự động đồng bộ tức thì trên thiết bị của khách hàng.
           </p>
         </div>
 
-        <!-- Banner đang kích hoạt hiện tại -->
-        <div id="adminAdsList">
-          <!-- Render Javascript -->
-        </div>
+        <div id="adminAdsList"></div>
       </div>
 
-      <!-- Bảng Quản Lý Danh Sách Khách Hàng -->
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
           <div>
@@ -394,9 +363,7 @@
                 <th class="py-2.5 px-3 text-right">Thao tác</th>
               </tr>
             </thead>
-            <tbody id="adminUserTableBody" class="divide-y divide-pink-100/80 font-bold">
-              <!-- Render bằng Javascript -->
-            </tbody>
+            <tbody id="adminUserTableBody" class="divide-y divide-pink-100/80 font-bold"></tbody>
           </table>
         </div>
       </div>
@@ -405,23 +372,19 @@
 
   </main>
 
-  <!-- ==================== CỤM NÚT TRÒN NỔI Ở GÓC MÀN HÌNH (ZALO & DONATE) ==================== -->
+  <!-- ==================== CỤM NÚT TRÒN NỔI Ở GÓC MÀN HÌNH ==================== -->
   <aside class="fixed bottom-[calc(4.5rem+var(--safe-bottom))] md:bottom-8 right-3 sm:right-6 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
-    
-    <!-- 1. NÚT DONATE / ỦNG HỘ CAFE -->
     <button onclick="openDonateModal()" title="Ủng hộ 1 ly cafe nhé! ☕" class="touch-btn group flex items-center gap-1.5 bg-gradient-to-r from-amber-400 via-sanrio-yellow to-amber-300 hover:from-amber-500 hover:to-amber-400 text-amber-950 p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-amber-300/60 border-2 border-white animate-pulseSubtle transition-all">
       <span class="text-lg sm:text-xl">☕</span>
       <span class="text-xs font-black hidden group-hover:inline-block transition-all pr-1">Ủng hộ team 💕</span>
     </button>
 
-    <!-- 2. NÚT LIÊN HỆ ADMIN QUA ZALO -->
     <a href="https://zalo.me/0567866683" target="_blank" rel="noopener noreferrer" title="Liên hệ Admin qua Zalo (0567.866.683)" class="touch-btn group flex items-center gap-1.5 bg-[#0068FF] hover:bg-blue-600 text-white p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-blue-400/50 border-2 border-white transition-all">
       <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white flex items-center justify-center text-[#0068FF] font-black text-xs">
         <span class="font-extrabold font-sans">Z</span>
       </div>
       <span class="text-xs font-black hidden group-hover:inline-block transition-all pr-1">Chat Admin Zalo</span>
     </a>
-
   </aside>
 
   <!-- ==================== THANH ĐIỀU HƯỚNG DƯỚI ĐÁY CHO ĐIỆN THOẠI ==================== -->
@@ -433,7 +396,6 @@
       <span>Thêm mã</span>
     </button>
 
-    <!-- Nút Quét QR tròn to nổi bật ở giữa -->
     <button onclick="openQrScannerModal()" class="touch-btn -mt-6 w-14 h-14 rounded-full bg-gradient-to-tr from-sanrio-deepPink to-sanrio-bowRed text-white flex items-center justify-center shadow-lg shadow-pink-400/60 border-4 border-white">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/></svg>
     </button>
@@ -447,8 +409,6 @@
   </nav>
 
   <!-- ==================== CÁC MODAL HỆ THỐNG ==================== -->
-
-  <!-- MODAL ADMIN CẬP NHẬT QUẢNG CÁO TOÀN CẦU -->
   <div id="addAdModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
     <div class="w-full max-w-md glass-card rounded-3xl p-5 sm:p-6 shadow-2xl border-purple-300 max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -470,7 +430,6 @@
           <input type="url" id="adTargetUrlInput" placeholder="https://zalo.me/... hoặc link web của bạn" class="w-full bg-white border-2 border-purple-200 rounded-2xl px-4 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-purple-600">
         </div>
 
-        <!-- Khung xem trước ảnh banner -->
         <div>
           <p class="text-[11px] font-extrabold text-purple-700 mb-1">Xem trước hiển thị:</p>
           <div class="w-full h-28 sm:h-32 rounded-2xl border-2 border-dashed border-purple-300 overflow-hidden bg-purple-50 flex items-center justify-center">
@@ -486,10 +445,8 @@
     </div>
   </div>
 
-  <!-- 💖 MODAL DONATE HELLO KITTY CHUẨN TECHCOMBANK -->
   <div id="donateModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md">
     <div class="w-full max-w-sm sm:max-w-md bg-white rounded-3xl border-4 border-sanrio-pink shadow-2xl p-4 sm:p-6 text-center relative overflow-hidden max-h-[90dvh] overflow-y-auto custom-scroll animate-heartPop">
-      
       <button onclick="closeDonateModal()" class="absolute top-3 right-3 text-pink-400 hover:text-sanrio-bowRed w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-xl font-black transition-colors">
         &times;
       </button>
@@ -507,7 +464,6 @@
       </p>
 
       <div class="mt-3.5 p-3 sm:p-4 bg-gradient-to-b from-pink-50 via-white to-pink-50 rounded-2xl border-2 border-sanrio-border shadow-inner">
-        
         <div class="flex items-center justify-center gap-2 mb-2">
           <span class="text-[11px] sm:text-xs font-black text-white bg-red-600 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
             TECHCOMBANK ❖
@@ -553,16 +509,11 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="mt-3 text-center">
-        <p class="text-xs font-black text-pink-600">
-          Mọi sự đóng góp đều được trân trọng 💕
-        </p>
-        <p class="text-[11px] font-bold text-pink-500 mt-0.5">
-          Cảm ơn bạn đã đồng hành và ủng hộ team HOTGENZ.COM! 🐾
-        </p>
+        <p class="text-xs font-black text-pink-600">Mọi sự đóng góp đều được trân trọng 💕</p>
+        <p class="text-[11px] font-bold text-pink-500 mt-0.5">Cảm ơn bạn đã đồng hành và ủng hộ team HOTGENZ.COM! 🐾</p>
       </div>
 
       <div class="mt-4">
@@ -570,14 +521,11 @@
           Đóng cửa sổ 🌸
         </button>
       </div>
-
     </div>
   </div>
 
-  <!-- 🚨 MODAL: "Á À BẮT QUẢ TANG NHÁ!" -->
   <div id="bustedModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
     <div class="w-full max-w-sm bg-gradient-to-b from-white via-pink-50 to-pink-100 rounded-3xl border-4 border-sanrio-bowRed p-5 sm:p-6 text-center shadow-2xl animate-bustedShake relative overflow-hidden max-h-[90dvh] overflow-y-auto custom-scroll">
-      
       <div class="absolute -top-3 -right-3 w-16 h-16 bg-red-500/20 rounded-full blur-xl"></div>
       
       <div class="relative inline-block mb-2 sm:mb-3">
@@ -617,7 +565,6 @@
     </div>
   </div>
 
-  <!-- MODAL ĐỔI MÃ PIN CỦA KHÁCH HÀNG -->
   <div id="userChangePinModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -644,7 +591,6 @@
     </div>
   </div>
 
-  <!-- MODAL ĐĂNG KÝ TÀI KHOẢN MỚI -->
   <div id="registerModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -667,7 +613,6 @@
     </div>
   </div>
 
-  <!-- MODAL THÊM KHÓA THỦ CÔNG -->
   <div id="manualAddModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-md glass-card rounded-3xl p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -699,7 +644,6 @@
     </div>
   </div>
 
-  <!-- MODAL QUÉT QR BẰNG CAMERA HOẶC ẢNH -->
   <div id="qrScannerModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm">
     <div class="w-full max-w-sm bg-white rounded-3xl border-4 border-sanrio-pink p-4 sm:p-5 shadow-2xl text-center max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3">
@@ -707,8 +651,7 @@
         <button onclick="closeQrScannerModal()" class="text-pink-400 hover:text-pink-700 text-xl font-black">&times;</button>
       </div>
 
-      <div id="qrReaderBox" class="w-full h-56 sm:h-64 bg-pink-50 rounded-2xl overflow-hidden border-2 border-dashed border-sanrio-border flex items-center justify-center">
-      </div>
+      <div id="qrReaderBox" class="w-full h-56 sm:h-64 bg-pink-50 rounded-2xl overflow-hidden border-2 border-dashed border-sanrio-border flex items-center justify-center"></div>
 
       <div class="mt-3.5 pt-3 border-t border-pink-100">
         <label class="block text-xs font-extrabold text-pink-600 mb-2">Hoặc tải ảnh chụp QR từ máy của bạn:</label>
@@ -717,7 +660,6 @@
     </div>
   </div>
 
-  <!-- MODAL ADMIN TẠO KHÁCH HÀNG -->
   <div id="adminCreateUserModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 shadow-2xl border-purple-300 max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3">
@@ -740,7 +682,6 @@
     </div>
   </div>
 
-  <!-- TOAST THÔNG BÁO -->
   <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 hidden glass-card border-2 border-sanrio-deepPink px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-lg text-xs font-black text-sanrio-dark flex items-center gap-1.5 animate-heartPop max-w-[90vw] text-center">
     <span id="toastIcon">✨</span>
     <span id="toastMsg" class="truncate">Đã sao chép!</span>
@@ -751,10 +692,54 @@
     /* ==================== 1. KHỞI TẠO STATE & CƠ SỞ DỮ LIỆU ==================== */
     const DEFAULT_ADMIN_USER = 'bodatvidai';
     const DEFAULT_ADMIN_PIN = '8888';
-
-    // 🔗 LINK FIREBASE REST API MẶC ĐỊNH
-    // Bạn có thể dán link Firebase của bạn trực tiếp vào giữa 2 dấu nháy dưới đây:
     const FIREBASE_SYNC_API = ""; 
+
+    // QUẢN LÝ PHIÊN DUY TRÌ 30 NGÀY
+    const SESSION_KEY = 'kitty_auth_session';
+    const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 ngày (ms)
+
+    function saveSession(sessionData) {
+      const sessionPayload = {
+        username: sessionData.username,
+        role: sessionData.role,
+        expiresAt: Date.now() + SESSION_DURATION_MS
+      };
+      localStorage.setItem(SESSION_KEY, JSON.stringify(sessionPayload));
+      currentSession = sessionPayload;
+    }
+
+    function restoreSession() {
+      try {
+        const raw = localStorage.getItem(SESSION_KEY);
+        if (!raw) return null;
+        const session = JSON.parse(raw);
+
+        // Đã quá 30 ngày -> hết hạn
+        if (!session.expiresAt || Date.now() >= session.expiresAt) {
+          localStorage.removeItem(SESSION_KEY);
+          return null;
+        }
+
+        // Nếu là khách hàng -> kiểm tra xem có bị khóa/xóa không
+        if (session.role === 'client') {
+          const users = getUsersDb();
+          const user = users.find(u => u.username.toLowerCase() === session.username.toLowerCase());
+          if (!user || user.isLocked) {
+            localStorage.removeItem(SESSION_KEY);
+            return null;
+          }
+        }
+        return session;
+      } catch (e) {
+        localStorage.removeItem(SESSION_KEY);
+        return null;
+      }
+    }
+
+    function clearSession() {
+      localStorage.removeItem(SESSION_KEY);
+      currentSession = null;
+    }
 
     const GLOBAL_DEFAULT_ADS = [
       {
@@ -799,7 +784,7 @@
       localStorage.setItem(`kitty_vault_${username.toLowerCase()}`, JSON.stringify(vault));
     }
 
-    /* ==================== 2. HỆ THỐNG ĐỒNG BỘ ĐÁM MÂY (FIREBASE REALTIME SYNC) ==================== */
+    /* ==================== 2. HỆ THỐNG ĐỒNG BỘ ĐÁM MÂY ==================== */
     function getCloudSyncUrl() {
       return localStorage.getItem('kitty_cloud_sync_url') || FIREBASE_SYNC_API;
     }
@@ -815,7 +800,6 @@
       syncAdsFromCloud();
     }
 
-    // Tự động kéo quảng cáo từ Firebase Realtime Database về máy khách hàng
     async function syncAdsFromCloud() {
       const cloudUrl = getCloudSyncUrl();
       const statusLabel = document.getElementById('statSyncStatus');
@@ -872,7 +856,6 @@
     function renderAdsToUi() {
       const ads = getAdsDb();
       const activeAds = ads.filter(a => a.active);
-
       const clientContainer = document.getElementById('clientAdArea');
       const loginContainer = document.getElementById('loginAdArea');
 
@@ -883,7 +866,6 @@
       }
 
       const ad = activeAds[0];
-
       const adHtml = `
         <a href="${escapeHtml(ad.targetUrl)}" target="_blank" rel="noopener noreferrer" class="block w-full overflow-hidden group">
           <img src="${escapeHtml(ad.imageUrl)}" alt="Quảng cáo" class="w-full h-24 sm:h-32 md:h-36 object-cover rounded-2xl sm:rounded-3xl hover:opacity-95 transition-opacity group-hover:scale-[1.01] transition-transform duration-300">
@@ -901,7 +883,7 @@
       }
     }
 
-    /* ==================== 3. HỆ THỐNG ÂM THANH SYNTH ==================== */
+    /* ==================== 3. HỆ THỐNG ÂM THANH ==================== */
     let audioCtx = null;
     function getAudioContext() {
       if (!audioCtx) {
@@ -951,7 +933,7 @@
       } catch (e) {}
     }
 
-    /* ==================== 4. CHỨC NĂNG BẮT QUẢ TANG & ĐĂNG NHẬP ==================== */
+    /* ==================== 4. ĐĂNG NHẬP & DUY TRÌ PHIÊN ==================== */
     function switchLoginTab(tab) {
       activeLoginTab = tab;
       const tabClientBtn = document.getElementById('tabClientBtn');
@@ -985,20 +967,19 @@
         return;
       }
 
-      // TRƯỜNG HỢP: KHÁCH CỐ TÌNH VÀO ADMIN NHƯNG SAI MÃ PIN
       if (usernameInput.toLowerCase() === DEFAULT_ADMIN_USER) {
         if (pinInput !== DEFAULT_ADMIN_PIN) {
           showBustedAlert("Vào phòng Admin làm gì đấy hử?! 😼🎀<br>Định 'đột nhập' hack hệ thống của bé Mèo hả?<br><span class='text-sanrio-deepPink'>Không có cửa đâu nhaaaa!</span>");
           return;
         }
 
-        currentSession = { username: 'admin', role: 'admin' };
+        // Lưu phiên đăng nhập 30 ngày cho Admin
+        saveSession({ username: 'admin', role: 'admin' });
         setupViewForSession();
         showToast('Xin chào Quản Trị Viên! 👑', '🎀');
         return;
       }
 
-      // TRƯỜNG HỢP: KHÁCH HÀNG BÌNH THƯỜNG
       const users = getUsersDb();
       const user = users.find(u => u.username.toLowerCase() === usernameInput.toLowerCase());
 
@@ -1017,7 +998,8 @@
         return;
       }
 
-      currentSession = { username: user.username, role: 'client' };
+      // Lưu phiên đăng nhập 30 ngày cho Khách Hàng
+      saveSession({ username: user.username, role: 'client' });
       setupViewForSession();
       showToast(`Chào mừng bạn ${user.username} quay trở lại! 🌸`, '✨');
     }
@@ -1039,7 +1021,7 @@
     }
 
     function handleLogout() {
-      currentSession = null;
+      clearSession(); // Xóa phiên 30 ngày
       if (totpIntervalId) clearInterval(totpIntervalId);
       document.getElementById('loginUsername').value = '';
       document.getElementById('loginPin').value = '';
@@ -1094,7 +1076,7 @@
       }
     }
 
-    /* ==================== 6. ADMIN DASHBOARD & QUẢN LÝ QUẢNG CÁO ==================== */
+    /* ==================== 6. ADMIN DASHBOARD ==================== */
     function renderAdminDashboard() {
       const users = getUsersDb();
       const ads = getAdsDb();
@@ -1232,7 +1214,6 @@
 
       localStorage.setItem('kitty_ads_db', JSON.stringify(updatedAds));
 
-      // ĐẨY THẲNG LÊN FIREBASE REALTIME DATABASE ĐỂ TẤT CẢ KHÁCH HÀNG CẬP NHẬT TỨC THÌ
       const cloudUrl = getCloudSyncUrl();
       if (cloudUrl) {
         try {
@@ -1342,7 +1323,7 @@
       showToast(`Đã tạo khách hàng "${username}" thành công!`, '🎉');
     }
 
-    /* ==================== 7. ĐỔI MÃ PIN CHO KHÁCH HÀNG ==================== */
+    /* ==================== 7. ĐỔI MÃ PIN ==================== */
     function openUserChangePinModal() {
       document.getElementById('currentPinInput').value = '';
       document.getElementById('newPinInput').value = '';
@@ -1383,7 +1364,7 @@
       showToast('Đã đổi mã PIN mới thành công rực rỡ! 🌸', '🎉');
     }
 
-    /* ==================== 8. ĐĂNG KÝ KHÁCH HÀNG MỚI ==================== */
+    /* ==================== 8. ĐĂNG KÝ ==================== */
     function openRegisterModal() {
       document.getElementById('regUsername').value = '';
       document.getElementById('regPin').value = '';
@@ -1420,12 +1401,13 @@
       saveUsersDb(users);
       closeRegisterModal();
 
-      currentSession = { username, role: 'client' };
+      // Lưu phiên 30 ngày ngay khi đăng ký thành công
+      saveSession({ username, role: 'client' });
       setupViewForSession();
       showToast(`Tạo thành công! Chào mừng ${username} 🎀`, '✨');
     }
 
-    /* ==================== 9. BỘ SINH MÃ TOTP RFC 6238 ==================== */
+    /* ==================== 9. TOTP GENERATOR ==================== */
     function base32ToBytes(base32) {
       const clean = base32.toUpperCase().replace(/[^A-Z2-7]/g, '');
       const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
@@ -1481,7 +1463,7 @@
       }
     }
 
-    /* ==================== 10. RENDER VÀ CẬP NHẬT GIAO DIỆN MÃ 2FA ==================== */
+    /* ==================== 10. RENDER TOTP LIST ==================== */
     async function renderTotpList() {
       if (!currentSession || currentSession.role !== 'client') return;
 
@@ -1565,7 +1547,7 @@
       }, 1000);
     }
 
-    /* ==================== 11. QUẢN LÝ THÊM & XÓA KHÓA ==================== */
+    /* ==================== 11. THÊM / XÓA KHÓA ==================== */
     function openManualAddModal() {
       document.getElementById('addIssuer').value = '';
       document.getElementById('addAccount').value = '';
@@ -1609,7 +1591,7 @@
       }
     }
 
-    /* ==================== 12. SAO CHÉP & DONATE MODAL ==================== */
+    /* ==================== 12. SAO CHÉP & BACKUP ==================== */
     function copyOtpCode(code) {
       if (!code || code === '------') return;
       copyToClipboard(code, `Đã sao chép: ${code} 🎀`);
@@ -1650,7 +1632,7 @@
       showToast('Đã xuất file sao lưu an toàn! 🌸', '💾');
     }
 
-    /* ==================== 13. BỘ QUÉT QR CODE ==================== */
+    /* ==================== 13. QUÉT QR CODE ==================== */
     function openQrScannerModal() {
       document.getElementById('qrScannerModal').classList.remove('hidden');
       if (!html5QrScannerInstance) {
@@ -1734,7 +1716,7 @@
       }
     }
 
-    /* ==================== 14. TIỆN ÍCH HỆ THỐNG & TỰ ĐỘNG LÀM MỚI QUẢNG CÁO ==================== */
+    /* ==================== 14. TIỆN ÍCH & KHỞI CHẠY ==================== */
     function showToast(msg, icon = '✨') {
       const toast = document.getElementById('toast');
       document.getElementById('toastMsg').innerText = msg;
@@ -1763,10 +1745,10 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       getUsersDb();
-      syncAdsFromCloud(); // Đồng bộ quảng cáo toàn cầu ngay khi mở trang
+      currentSession = restoreSession(); // Khôi phục phiên 30 ngày tự động
+      syncAdsFromCloud();
       setupViewForSession();
 
-      // Cứ mỗi 15 giây tự động kiểm tra xem Admin có đổi banner trên Firebase không
       setInterval(() => {
         syncAdsFromCloud();
       }, 15000);
