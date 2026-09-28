@@ -203,7 +203,6 @@
           <p class="text-xs text-pink-600 font-bold mt-1">Đăng nhập một lần - Duy trì kết nối 30 ngày an toàn ✨</p>
         </div>
 
-        <!-- Tab Chuyển đổi Khách Hàng / Admin -->
         <div class="flex bg-pink-100/80 p-1.5 rounded-2xl mb-4 sm:mb-5 border-2 border-sanrio-border/60">
           <button id="tabClientBtn" type="button" onclick="switchLoginTab('client')" class="flex-1 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition-all bg-white text-sanrio-deepPink shadow-sm">
             Khách Hàng
@@ -213,7 +212,6 @@
           </button>
         </div>
 
-        <!-- Form Đăng Nhập -->
         <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();" class="space-y-3.5 sm:space-y-4">
           <div>
             <label class="block text-xs font-extrabold text-sanrio-dark mb-1.5">Tên tài khoản</label>
@@ -285,11 +283,11 @@
       </div>
     </div>
 
-    <!-- 3. VIEW QUẢN TRỊ VIÊN (ADMIN DASHBOARD) -->
+    <!-- 3. VIEW QUẢN TRỊ VIÊN (ADMIN DASHBOARD TOÀN CẦU) -->
     <div id="adminView" class="hidden space-y-4">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
         <div class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border-l-4 border-sanrio-adminPurple">
-          <p class="text-[10px] sm:text-[11px] font-extrabold text-purple-600 uppercase tracking-wider">Tổng Khách Hàng</p>
+          <p class="text-[10px] sm:text-[11px] font-extrabold text-purple-600 uppercase tracking-wider">Tổng Khách Toàn Cầu</p>
           <h4 id="statTotalUsers" class="text-xl sm:text-2xl font-black font-display text-sanrio-dark mt-0.5">0</h4>
         </div>
         <div class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border-l-4 border-sanrio-mint">
@@ -301,51 +299,69 @@
           <h4 id="statLockedUsers" class="text-xl sm:text-2xl font-black font-display text-sanrio-dark mt-0.5">0</h4>
         </div>
         <div class="glass-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 border-l-4 border-sanrio-deepPink">
-          <p class="text-[10px] sm:text-[11px] font-extrabold text-pink-600 uppercase tracking-wider">Đồng Bộ Cloud</p>
+          <p class="text-[10px] sm:text-[11px] font-extrabold text-pink-600 uppercase tracking-wider">Đồng Bộ Cloud Multi-IP</p>
           <h4 id="statSyncStatus" class="text-sm font-black font-display text-sanrio-dark mt-1 text-emerald-600">Đang Kiểm Tra...</h4>
         </div>
       </div>
 
+      <!-- Cấu hình Link Firebase Realtime Database -->
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl border-purple-200 space-y-4">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <h3 class="text-base sm:text-lg font-black font-display text-purple-900 flex items-center gap-2">
-              <span>🌸 Quản Lý Banner Quảng Cáo (Đồng Bộ Firebase)</span>
+              <span>🌐 Cấu Hình Đám Mây Firebase (Đồng Bộ Khách Hàng & Mã Toàn Cầu)</span>
+            </h3>
+            <p class="text-xs text-purple-700 font-semibold mt-0.5">
+              Dán link Realtime Database một lần duy nhất, dữ liệu khách hàng từ mọi thiết bị và IP sẽ đổ về đây.
+            </p>
+          </div>
+          <button onclick="syncAllDataFromCloud(true)" class="touch-btn bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs px-3.5 py-2 rounded-2xl shadow-md transition-all self-end sm:self-auto flex items-center gap-1.5">
+            <span>🔄 Làm mới dữ liệu ngay</span>
+          </button>
+        </div>
+
+        <div class="bg-purple-50/70 p-3 rounded-2xl border border-purple-200 text-xs">
+          <label class="block font-black text-purple-900 mb-1">🔗 Link Firebase Realtime Database:</label>
+          <div class="flex gap-2">
+            <input type="url" id="cloudSyncUrlInput" placeholder="https://your-project-default-rtdb.firebaseio.com/" class="flex-1 bg-white border border-purple-300 rounded-xl px-3 py-1.5 font-bold text-purple-900 text-xs focus:outline-none focus:border-purple-600">
+            <button onclick="saveCloudSyncUrl()" class="touch-btn bg-purple-700 text-white font-black px-3.5 py-1.5 rounded-xl text-xs hover:bg-purple-800">
+              Lưu & Kết Nối
+            </button>
+          </div>
+          <p class="text-[10px] text-purple-600 mt-1 font-semibold">
+            * Chỉ cần dán đường dẫn gốc của Firebase, hệ thống tự động đồng bộ tài khoản, mã 2FA và banner.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quản Lý Banner Quảng Cáo -->
+      <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl border-purple-200 space-y-4">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div>
+            <h3 class="text-base sm:text-lg font-black font-display text-purple-900 flex items-center gap-2">
+              <span>🌸 Quản Lý Banner Quảng Cáo</span>
               <span class="text-[10px] bg-purple-100 text-purple-700 font-extrabold px-2.5 py-0.5 rounded-full border border-purple-300">Admin</span>
             </h3>
             <p class="text-xs text-purple-700 font-semibold mt-0.5">
-              Thay đổi ảnh banner và link đích, toàn bộ người dùng trên toàn thế giới sẽ tự động cập nhật ngay lập tức.
+              Cập nhật banner quảng cáo đồng bộ đến tất cả khách hàng.
             </p>
           </div>
           <button onclick="openAddAdModal()" class="touch-btn bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs px-3.5 py-2 rounded-2xl shadow-md transition-all self-end sm:self-auto flex items-center gap-1.5">
             <span>+ Cập Nhật Banner Toàn Cầu</span>
           </button>
         </div>
-
-        <div class="bg-purple-50/70 p-3 rounded-2xl border border-purple-200 text-xs">
-          <label class="block font-black text-purple-900 mb-1">🔗 Link Firebase Cloud Sync API (kết thúc bằng /ads.json):</label>
-          <div class="flex gap-2">
-            <input type="url" id="cloudSyncUrlInput" placeholder="https://your-project-default-rtdb.firebaseio.com/ads.json" class="flex-1 bg-white border border-purple-300 rounded-xl px-3 py-1.5 font-bold text-purple-900 text-xs focus:outline-none focus:border-purple-600">
-            <button onclick="saveCloudSyncUrl()" class="touch-btn bg-purple-700 text-white font-black px-3 py-1.5 rounded-xl text-xs hover:bg-purple-800">
-              Lưu & Kiểm Tra
-            </button>
-          </div>
-          <p class="text-[10px] text-purple-600 mt-1 font-semibold">
-            * Dữ liệu quảng cáo sẽ tự động đồng bộ tức thì trên thiết bị của khách hàng.
-          </p>
-        </div>
-
         <div id="adminAdsList"></div>
       </div>
 
+      <!-- Bảng Quản Lý Danh Sách Khách Hàng Toàn Cầu -->
       <div class="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xl">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
           <div>
             <h3 class="text-base sm:text-lg font-black font-display text-sanrio-dark flex items-center gap-2">
-              <span>Danh Sách Hồ Sơ Khách Hàng</span>
-              <span class="text-[10px] bg-purple-100 text-purple-700 font-extrabold px-2.5 py-0.5 rounded-full border border-purple-300">Quản Trị</span>
+              <span>Danh Sách Khách Hàng (Tất cả thiết bị & IP)</span>
+              <span class="text-[10px] bg-purple-100 text-purple-700 font-extrabold px-2.5 py-0.5 rounded-full border border-purple-300">Cloud Sync</span>
             </h3>
-            <p class="text-xs text-purple-700 font-semibold mt-0.5">Quản lý bảo mật tài khoản, đổi PIN khi khách yêu cầu hoặc mở khóa.</p>
+            <p class="text-xs text-purple-700 font-semibold mt-0.5">Admin có thể bấm <b>"Xem mã"</b> để kiểm tra toàn bộ mã 2FA khách đã thêm.</p>
           </div>
           <button onclick="openCreateUserByAdminModal()" class="touch-btn bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs px-3.5 py-2 rounded-2xl shadow-md transition-all self-end sm:self-auto">
             + Thêm Khách Hàng
@@ -353,14 +369,15 @@
         </div>
 
         <div class="overflow-x-auto custom-scroll -mx-2 sm:mx-0">
-          <table class="w-full text-left text-xs sm:text-sm min-w-[500px]">
+          <table class="w-full text-left text-xs sm:text-sm min-w-[550px]">
             <thead>
               <tr class="border-b-2 border-sanrio-border/60 text-purple-900 font-black">
                 <th class="py-2.5 px-3">Tài khoản</th>
+                <th class="py-2.5 px-3">Mã PIN</th>
                 <th class="py-2.5 px-3">Ngày tạo</th>
                 <th class="py-2.5 px-3 text-center">Số mã 2FA</th>
                 <th class="py-2.5 px-3 text-center">Trạng thái</th>
-                <th class="py-2.5 px-3 text-right">Thao tác</th>
+                <th class="py-2.5 px-3 text-right">Hành động</th>
               </tr>
             </thead>
             <tbody id="adminUserTableBody" class="divide-y divide-pink-100/80 font-bold"></tbody>
@@ -374,13 +391,11 @@
 
   <!-- ==================== CỤM NÚT TRÒN NỔI Ở GÓC MÀN HÌNH ==================== -->
   <aside class="fixed bottom-[calc(4.5rem+var(--safe-bottom))] md:bottom-8 right-3 sm:right-6 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
-    <!-- Nút Ủng hộ Donate -->
     <button onclick="openDonateModal()" title="Ủng hộ 1 ly cafe nhé! ☕" class="touch-btn group flex items-center gap-1.5 bg-gradient-to-r from-amber-400 via-sanrio-yellow to-amber-300 hover:from-amber-500 hover:to-amber-400 text-amber-950 p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-amber-300/60 border-2 border-white animate-pulseSubtle transition-all">
       <span class="text-lg sm:text-xl">☕</span>
       <span class="text-xs font-black hidden group-hover:inline-block transition-all pr-1">Ủng hộ team 💕</span>
     </button>
 
-    <!-- Nút Liên hệ Admin qua Telegram @phthuyx -->
     <a href="https://t.me/phthuyx" target="_blank" rel="noopener noreferrer" title="Liên hệ Admin qua Telegram (@phthuyx)" class="touch-btn group flex items-center gap-1.5 bg-[#24A1DE] hover:bg-[#1E88BE] text-white p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-sky-400/50 border-2 border-white transition-all">
       <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white flex items-center justify-center text-[#24A1DE] font-black text-xs">
         <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -413,6 +428,28 @@
   </nav>
 
   <!-- ==================== CÁC MODAL HỆ THỐNG ==================== -->
+
+  <!-- MODAL ADMIN XEM MÃ 2FA CỦA TỪNG KHÁCH HÀNG -->
+  <div id="adminViewVaultModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm">
+    <div class="w-full max-w-lg glass-card rounded-3xl p-5 sm:p-6 shadow-2xl border-purple-300 max-h-[90dvh] overflow-y-auto custom-scroll">
+      <div class="flex items-center justify-between mb-4 border-b border-purple-200 pb-3">
+        <div>
+          <h3 class="text-base sm:text-lg font-black font-display text-purple-950 flex items-center gap-1.5">
+            <span>Khóa 2FA của:</span>
+            <span id="adminViewTargetUser" class="text-sanrio-deepPink underline">...</span>
+          </h3>
+          <p class="text-xs text-purple-600 font-bold">Admin xem trực tiếp mã OTP và Secret Key của khách</p>
+        </div>
+        <button onclick="closeAdminViewVaultModal()" class="text-purple-400 hover:text-purple-700 text-2xl font-black">&times;</button>
+      </div>
+
+      <div id="adminViewVaultList" class="space-y-3">
+        <!-- Render Javascript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ADMIN CẬP NHẬT QUẢNG CÁO -->
   <div id="addAdModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
     <div class="w-full max-w-md glass-card rounded-3xl p-5 sm:p-6 shadow-2xl border-purple-300 max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -449,7 +486,7 @@
     </div>
   </div>
 
-  <!-- 💖 MODAL DONATE ĐÃ GẮN LINK ẢNH QR MỚI -->
+  <!-- MODAL DONATE -->
   <div id="donateModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md">
     <div class="w-full max-w-sm sm:max-w-md bg-white rounded-3xl border-4 border-sanrio-pink shadow-2xl p-4 sm:p-6 text-center relative overflow-hidden max-h-[90dvh] overflow-y-auto custom-scroll animate-heartPop">
       
@@ -470,7 +507,6 @@
       </p>
 
       <div class="mt-3.5 p-3 sm:p-4 bg-gradient-to-b from-pink-50 via-white to-pink-50 rounded-2xl border-2 border-sanrio-border shadow-inner">
-        
         <div class="flex items-center justify-center gap-2 mb-2">
           <span class="text-[11px] sm:text-xs font-black text-white bg-blue-600 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
             QR ĐA NĂNG
@@ -480,7 +516,6 @@
 
         <p class="text-sm sm:text-base font-extrabold text-sanrio-dark uppercase tracking-wider">CHU THI PHUONG THUY</p>
 
-        <!-- Khung hiển thị ảnh QR từ link ImgBB -->
         <div class="relative w-52 h-52 sm:w-60 sm:h-60 mx-auto bg-white p-2 rounded-2xl border-2 border-dashed border-sanrio-border shadow-sm flex items-center justify-center my-2.5">
           <img src="https://i.ibb.co/99QWXMkY/IMG-6759.jpg" 
                alt="Mã QR Chuyển Khoản CHU THI PHUONG THUY" 
@@ -504,16 +539,11 @@
             </div>
           </div>
         </div>
-
       </div>
 
       <div class="mt-3 text-center">
-        <p class="text-xs font-black text-pink-600">
-          Mọi sự đóng góp đều được trân trọng 💕
-        </p>
-        <p class="text-[11px] font-bold text-pink-500 mt-0.5">
-          Cảm ơn bạn đã đồng hành và ủng hộ team 2FA.HOTGENZ.COM! 🐾
-        </p>
+        <p class="text-xs font-black text-pink-600">Mọi sự đóng góp đều được trân trọng 💕</p>
+        <p class="text-[11px] font-bold text-pink-500 mt-0.5">Cảm ơn bạn đã đồng hành và ủng hộ team 2FA.HOTGENZ.COM! 🐾</p>
       </div>
 
       <div class="mt-4">
@@ -521,10 +551,10 @@
           Đóng cửa sổ 🌸
         </button>
       </div>
-
     </div>
   </div>
 
+  <!-- MODAL BUSTED -->
   <div id="bustedModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
     <div class="w-full max-w-sm bg-gradient-to-b from-white via-pink-50 to-pink-100 rounded-3xl border-4 border-sanrio-bowRed p-5 sm:p-6 text-center shadow-2xl animate-bustedShake relative overflow-hidden max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="absolute -top-3 -right-3 w-16 h-16 bg-red-500/20 rounded-full blur-xl"></div>
@@ -566,6 +596,7 @@
     </div>
   </div>
 
+  <!-- MODAL ĐỔI MÃ PIN CỦA KHÁCH -->
   <div id="userChangePinModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -592,6 +623,7 @@
     </div>
   </div>
 
+  <!-- MODAL ĐĂNG KÝ -->
   <div id="registerModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -614,6 +646,7 @@
     </div>
   </div>
 
+  <!-- MODAL THÊM KHÓA THỦ CÔNG -->
   <div id="manualAddModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-md glass-card rounded-3xl p-5 sm:p-6 shadow-2xl max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3.5">
@@ -645,6 +678,7 @@
     </div>
   </div>
 
+  <!-- MODAL QUÉT QR BẰNG CAMERA -->
   <div id="qrScannerModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm">
     <div class="w-full max-w-sm bg-white rounded-3xl border-4 border-sanrio-pink p-4 sm:p-5 shadow-2xl text-center max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3">
@@ -661,6 +695,7 @@
     </div>
   </div>
 
+  <!-- MODAL ADMIN TẠO KHÁCH HÀNG -->
   <div id="adminCreateUserModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
     <div class="w-full max-w-sm glass-card rounded-3xl p-5 sm:p-6 shadow-2xl border-purple-300 max-h-[90dvh] overflow-y-auto custom-scroll">
       <div class="flex items-center justify-between mb-3">
@@ -690,10 +725,13 @@
 
   <!-- ==================== LOGIC JAVASCRIPT HỆ THỐNG ==================== -->
   <script>
-    /* ==================== 1. KHỞI TẠO STATE & CƠ SỞ DỮ LIỆU ==================== */
+    /* ==================== 1. KHỞI TẠO STATE & CẤU HÌNH ĐÁM MÂY ==================== */
     const DEFAULT_ADMIN_USER = 'bodatvidai';
     const DEFAULT_ADMIN_PIN = '8888';
-    const FIREBASE_SYNC_API = ""; 
+
+    // 🔗 DÁN LINK FIREBASE REALTIME DATABASE CỦA BẠN VÀO GIỮA 2 DẤU NHÁY DƯỚI ĐÂY:
+    // Ví dụ: const DEFAULT_FIREBASE_URL = "https://kitty-2fa-default-rtdb.firebaseio.com";
+    const DEFAULT_FIREBASE_URL = "https://kitty-2fa-default-rtdb.asia-southeast1.firebasedatabase.app";
 
     // QUẢN LÝ PHIÊN DUY TRÌ 30 NGÀY
     const SESSION_KEY = 'kitty_auth_session';
@@ -723,7 +761,7 @@
         if (session.role === 'client') {
           const users = getUsersDb();
           const user = users.find(u => u.username.toLowerCase() === session.username.toLowerCase());
-          if (!user || user.isLocked) {
+          if (user && user.isLocked) {
             localStorage.removeItem(SESSION_KEY);
             return null;
           }
@@ -754,20 +792,15 @@
     let html5QrScannerInstance = null;
     let totpIntervalId = null;
 
+    // Bộ nhớ cục bộ kết hợp Cloud Cache
     function getUsersDb() {
       const data = localStorage.getItem('kitty_users_db');
-      if (!data) {
-        const initial = [
-          { username: 'demo_user', pin: '1234', createdAt: new Date().toLocaleDateString('vi-VN'), isLocked: false }
-        ];
-        localStorage.setItem('kitty_users_db', JSON.stringify(initial));
-        saveUserVault('demo_user', [
-          { id: '1', issuer: 'Google', account: 'demo@gmail.com', secret: 'JBSWY3DPEHPK3PXP' },
-          { id: '2', issuer: 'Facebook', account: 'fb_user_kitty', secret: 'HXDMVJECJJWSRB3H' }
-        ]);
-        return initial;
+      if (!data) return [];
+      try {
+        return JSON.parse(data) || [];
+      } catch (e) {
+        return [];
       }
-      return JSON.parse(data);
     }
 
     function saveUsersDb(users) {
@@ -781,31 +814,34 @@
 
     function saveUserVault(username, vault) {
       localStorage.setItem(`kitty_vault_${username.toLowerCase()}`, JSON.stringify(vault));
+      // Tự động đẩy lên cloud cho khách hàng này
+      syncVaultToCloud(username, vault);
     }
 
-    /* ==================== 2. HỆ THỐNG ĐỒNG BỘ ĐÁM MÂY ==================== */
+    /* ==================== 2. HỆ THỐNG ĐỒNG BỘ MULTI-IP CLOUD (FIREBASE REST API) ==================== */
     function getCloudSyncUrl() {
-      return localStorage.getItem('kitty_cloud_sync_url') || FIREBASE_SYNC_API;
+      let url = localStorage.getItem('kitty_cloud_sync_url') || DEFAULT_FIREBASE_URL;
+      if (!url) return '';
+      return url.replace(/\/+$/, '').replace(/\/ads\.json$/, '').replace(/\.json$/, '');
     }
 
     function saveCloudSyncUrl() {
-      let url = document.getElementById('cloudSyncUrlInput').value.trim();
-      if (url && !url.endsWith('.json')) {
-        url = url.replace(/\/+$/, '') + '/ads.json';
-        document.getElementById('cloudSyncUrlInput').value = url;
-      }
-      localStorage.setItem('kitty_cloud_sync_url', url);
-      showToast('Đang kết nối Firebase...', '⏳');
-      syncAdsFromCloud();
+      let inputVal = document.getElementById('cloudSyncUrlInput').value.trim();
+      let cleanUrl = inputVal.replace(/\/+$/, '').replace(/\/ads\.json$/, '').replace(/\.json$/, '');
+      localStorage.setItem('kitty_cloud_sync_url', cleanUrl);
+      document.getElementById('cloudSyncUrlInput').value = cleanUrl;
+      showToast('Đang kết nối Cloud toàn cầu...', '⏳');
+      syncAllDataFromCloud(true);
     }
 
-    async function syncAdsFromCloud() {
-      const cloudUrl = getCloudSyncUrl();
+    // Tự động kéo toàn bộ Khách hàng & Vaults từ Cloud về máy Admin
+    async function syncAllDataFromCloud(showNotification = false) {
+      const rootUrl = getCloudSyncUrl();
       const statusLabel = document.getElementById('statSyncStatus');
 
-      if (!cloudUrl) {
+      if (!rootUrl) {
         if (statusLabel) {
-          statusLabel.innerText = 'Chưa Cấu Hình';
+          statusLabel.innerText = 'Chưa Cấu Hình Cloud';
           statusLabel.className = 'text-sm font-black font-display mt-1 text-amber-500';
         }
         renderAdsToUi();
@@ -813,32 +849,87 @@
       }
 
       try {
-        const response = await fetch(cloudUrl, { method: 'GET' });
-        if (response.ok) {
-          const remoteAds = await response.json();
+        // 1. Tải danh sách Users
+        const resUsers = await fetch(`${rootUrl}/users.json`);
+        if (resUsers.ok) {
+          const cloudUsersObj = await resUsers.json();
+          if (cloudUsersObj) {
+            let cloudUsers = Array.isArray(cloudUsersObj) ? cloudUsersObj.filter(Boolean) : Object.values(cloudUsersObj);
+            saveUsersDb(cloudUsers);
+          }
+        }
+
+        // 2. Tải toàn bộ Vaults của khách về
+        const resVaults = await fetch(`${rootUrl}/vaults.json`);
+        if (resVaults.ok) {
+          const allVaults = await resVaults.json();
+          if (allVaults) {
+            for (const [uName, vData] of Object.entries(allVaults)) {
+              if (vData) {
+                localStorage.setItem(`kitty_vault_${uName.toLowerCase()}`, JSON.stringify(vData));
+              }
+            }
+          }
+        }
+
+        // 3. Tải Banner Ads
+        const resAds = await fetch(`${rootUrl}/ads.json`);
+        if (resAds.ok) {
+          const remoteAds = await resAds.json();
           if (remoteAds) {
             let adsArray = Array.isArray(remoteAds) ? remoteAds : Object.values(remoteAds);
             if (adsArray.length > 0) {
               localStorage.setItem('kitty_ads_db', JSON.stringify(adsArray));
             }
           }
-          if (statusLabel) {
-            statusLabel.innerText = 'Đã Kết Nối';
-            statusLabel.className = 'text-sm font-black font-display mt-1 text-emerald-600';
-          }
-        } else {
-          if (statusLabel) {
-            statusLabel.innerText = 'Lỗi Kết Nối';
-            statusLabel.className = 'text-sm font-black font-display mt-1 text-red-500';
-          }
         }
+
+        if (statusLabel) {
+          statusLabel.innerText = 'Đã Kết Nối Realtime';
+          statusLabel.className = 'text-sm font-black font-display mt-1 text-emerald-600';
+        }
+        if (showNotification) showToast('Đã đồng bộ toàn bộ dữ liệu mới nhất!', '☁️');
       } catch (err) {
         if (statusLabel) {
           statusLabel.innerText = 'Offline';
           statusLabel.className = 'text-sm font-black font-display mt-1 text-gray-400';
         }
       }
+
       renderAdsToUi();
+      if (currentSession && currentSession.role === 'admin') {
+        renderAdminDashboard();
+      } else if (currentSession && currentSession.role === 'client') {
+        renderTotpList();
+      }
+    }
+
+    // Đẩy 1 User lên Cloud
+    async function syncUserToCloud(userObj) {
+      const rootUrl = getCloudSyncUrl();
+      if (!rootUrl) return;
+      try {
+        const cleanName = userObj.username.toLowerCase();
+        await fetch(`${rootUrl}/users/${cleanName}.json`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(userObj)
+        });
+      } catch (e) {}
+    }
+
+    // Đẩy danh sách mã 2FA của 1 User lên Cloud
+    async function syncVaultToCloud(username, vault) {
+      const rootUrl = getCloudSyncUrl();
+      if (!rootUrl) return;
+      try {
+        const cleanName = username.toLowerCase();
+        await fetch(`${rootUrl}/vaults/${cleanName}.json`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(vault)
+        });
+      } catch (e) {}
     }
 
     function getAdsDb() {
@@ -955,7 +1046,7 @@
       }
     }
 
-    function handleLogin() {
+    async function handleLogin() {
       document.activeElement?.blur();
 
       const usernameInput = document.getElementById('loginUsername').value.trim();
@@ -975,11 +1066,40 @@
         saveSession({ username: 'admin', role: 'admin' });
         setupViewForSession();
         showToast('Xin chào Quản Trị Viên! 👑', '🎀');
+        syncAllDataFromCloud();
         return;
       }
 
-      const users = getUsersDb();
-      const user = users.find(u => u.username.toLowerCase() === usernameInput.toLowerCase());
+      // Kiểm tra trong bộ nhớ và trên Cloud
+      let users = getUsersDb();
+      let user = users.find(u => u.username.toLowerCase() === usernameInput.toLowerCase());
+
+      // Nếu máy này chưa có dữ liệu của khách, thử kéo từ Cloud về
+      if (!user) {
+        const rootUrl = getCloudSyncUrl();
+        if (rootUrl) {
+          try {
+            const res = await fetch(`${rootUrl}/users/${usernameInput.toLowerCase()}.json`);
+            if (res.ok) {
+              const cloudUser = await res.json();
+              if (cloudUser) {
+                user = cloudUser;
+                users.push(user);
+                saveUsersDb(users);
+
+                // Kéo luôn vault của người này về máy mới
+                const resVault = await fetch(`${rootUrl}/vaults/${usernameInput.toLowerCase()}.json`);
+                if (resVault.ok) {
+                  const cloudVault = await resVault.json();
+                  if (cloudVault) {
+                    localStorage.setItem(`kitty_vault_${usernameInput.toLowerCase()}`, JSON.stringify(cloudVault));
+                  }
+                }
+              }
+            }
+          } catch (e) {}
+        }
+      }
 
       if (!user) {
         showToast('Tài khoản chưa tồn tại! Hãy bấm Tạo mới nha.', '😿');
@@ -1073,10 +1193,9 @@
       }
     }
 
-    /* ==================== 6. ADMIN DASHBOARD ==================== */
+    /* ==================== 6. ADMIN DASHBOARD & XEM MÃ KHÁCH HÀNG ==================== */
     function renderAdminDashboard() {
       const users = getUsersDb();
-      const ads = getAdsDb();
       const tbody = document.getElementById('adminUserTableBody');
       tbody.innerHTML = '';
 
@@ -1094,9 +1213,12 @@
           <td class="py-3 px-3">
             <span class="font-extrabold text-sanrio-dark">${escapeHtml(u.username)}</span>
           </td>
+          <td class="py-3 px-3">
+            <span class="font-mono text-purple-700 bg-purple-50 px-2 py-0.5 rounded-lg border border-purple-200">${escapeHtml(u.pin || '---')}</span>
+          </td>
           <td class="py-3 px-3 text-pink-700 font-semibold">${u.createdAt || 'N/A'}</td>
           <td class="py-3 px-3 text-center">
-            <span class="bg-pink-100 text-sanrio-deepPink px-2 py-0.5 rounded-full font-black text-xs">${count} khóa</span>
+            <span class="bg-pink-100 text-sanrio-deepPink px-2.5 py-0.5 rounded-full font-black text-xs">${count} khóa</span>
           </td>
           <td class="py-3 px-3 text-center">
             ${u.isLocked 
@@ -1105,8 +1227,11 @@
             }
           </td>
           <td class="py-3 px-3 text-right space-x-1">
+            <button onclick="adminInspectUserVault('${u.username}')" class="px-2.5 py-1 rounded-xl text-xs font-black bg-blue-600 hover:bg-blue-700 text-white shadow-sm">
+              👁️ Xem mã
+            </button>
             <button onclick="toggleLockUser('${u.username}')" class="px-2 py-1 rounded-xl text-xs font-black ${u.isLocked ? 'bg-emerald-500 text-white' : 'bg-amber-400 text-white'}">
-              ${u.isLocked ? 'Mở Khóa' : 'Khóa'}
+              ${u.isLocked ? 'Mở' : 'Khóa'}
             </button>
             <button onclick="resetUserPin('${u.username}')" class="px-2 py-1 bg-purple-100 text-purple-700 hover:bg-purple-200 rounded-xl text-xs font-black">
               Đổi PIN
@@ -1127,6 +1252,45 @@
       if (cloudInput) cloudInput.value = getCloudSyncUrl();
 
       renderAdminAdsList();
+    }
+
+    // ADMIN XEM CHI TIẾT CÁC MÃ 2FA CỦA TỪNG KHÁCH
+    async function adminInspectUserVault(username) {
+      document.getElementById('adminViewTargetUser').innerText = username;
+      const container = document.getElementById('adminViewVaultList');
+      container.innerHTML = '<p class="text-xs text-center text-purple-500 font-bold py-4">Đang tải danh sách mã...</p>';
+      document.getElementById('adminViewVaultModal').classList.remove('hidden');
+
+      const vault = getUserVault(username);
+
+      if (vault.length === 0) {
+        container.innerHTML = '<p class="text-xs text-center text-gray-400 font-bold py-6">Khách hàng này chưa thêm mã 2FA nào 🌸</p>';
+        return;
+      }
+
+      container.innerHTML = '';
+      for (const item of vault) {
+        const otpCode = await generateTotpCode(item.secret);
+        const div = document.createElement('div');
+        div.className = "bg-white p-3 rounded-2xl border-2 border-purple-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-sm";
+        div.innerHTML = `
+          <div class="min-w-0">
+            <p class="text-xs font-black text-purple-950 truncate">${escapeHtml(item.issuer || 'Dịch vụ')} (${escapeHtml(item.account || 'Tài khoản')})</p>
+            <p class="text-[10px] font-mono text-gray-500 truncate select-all">Secret: ${escapeHtml(item.secret)}</p>
+          </div>
+          <div class="flex items-center gap-2 self-end sm:self-auto">
+            <span class="text-base font-black font-mono tracking-widest text-sanrio-deepPink bg-pink-50 px-2 py-0.5 rounded-lg border border-pink-200">${otpCode}</span>
+            <button onclick="copyToClipboard('${otpCode}', 'Đã copy mã OTP của khách!')" class="text-[10px] font-black bg-purple-100 hover:bg-purple-200 text-purple-800 px-2 py-1 rounded-lg">
+              Copy
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      }
+    }
+
+    function closeAdminViewVaultModal() {
+      document.getElementById('adminViewVaultModal').classList.add('hidden');
     }
 
     function renderAdminAdsList() {
@@ -1211,20 +1375,20 @@
 
       localStorage.setItem('kitty_ads_db', JSON.stringify(updatedAds));
 
-      const cloudUrl = getCloudSyncUrl();
-      if (cloudUrl) {
+      const rootUrl = getCloudSyncUrl();
+      if (rootUrl) {
         try {
-          await fetch(cloudUrl, {
+          await fetch(`${rootUrl}/ads.json`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedAds)
           });
-          showToast('Đã đồng bộ lên Firebase thành công! ☁️', '🎉');
+          showToast('Đã đồng bộ banner lên Cloud thành công! ☁️', '🎉');
         } catch (err) {
-          showToast('Đã lưu trên máy nhưng Firebase lỗi kết nối!', '⚠️');
+          showToast('Đã lưu banner mới!', '🌸');
         }
       } else {
-        showToast('Đã lưu banner mới thành công! 🌸', '🎉');
+        showToast('Đã lưu banner mới!', '🌸');
       }
 
       closeAddAdModal();
@@ -1238,9 +1402,9 @@
         ads[0].active = !ads[0].active;
         localStorage.setItem('kitty_ads_db', JSON.stringify(ads));
 
-        const cloudUrl = getCloudSyncUrl();
-        if (cloudUrl) {
-          fetch(cloudUrl, {
+        const rootUrl = getCloudSyncUrl();
+        if (rootUrl) {
+          fetch(`${rootUrl}/ads.json`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(ads)
@@ -1259,6 +1423,7 @@
       if (user) {
         user.isLocked = !user.isLocked;
         saveUsersDb(users);
+        syncUserToCloud(user);
         renderAdminDashboard();
         showToast(`Đã ${user.isLocked ? 'khóa' : 'mở khóa'} tài khoản ${username}`, '🔐');
       }
@@ -1272,17 +1437,26 @@
         if (user) {
           user.pin = newPin.trim();
           saveUsersDb(users);
+          syncUserToCloud(user);
+          renderAdminDashboard();
           showToast(`Đã đổi PIN của ${username} thành: ${newPin}`, '🔑');
         }
       }
     }
 
     function deleteUserByAdmin(username) {
-      if (confirm(`Bạn có chắc muốn xóa hồ sơ người dùng "${username}" không?`)) {
+      if (confirm(`Bạn có chắc muốn xóa hồ sơ người dùng "${username}" trên toàn hệ thống không?`)) {
         let users = getUsersDb();
         users = users.filter(u => u.username !== username);
         saveUsersDb(users);
         localStorage.removeItem(`kitty_vault_${username.toLowerCase()}`);
+
+        const rootUrl = getCloudSyncUrl();
+        if (rootUrl) {
+          fetch(`${rootUrl}/users/${username.toLowerCase()}.json`, { method: 'DELETE' }).catch(() => {});
+          fetch(`${rootUrl}/vaults/${username.toLowerCase()}.json`, { method: 'DELETE' }).catch(() => {});
+        }
+
         renderAdminDashboard();
         showToast(`Đã xóa tài khoản ${username}`, '🗑️');
       }
@@ -1308,13 +1482,17 @@
         showToast('Tài khoản này đã tồn tại!', '⚠️');
         return;
       }
-      users.push({
+
+      const newUser = {
         username,
         pin,
         createdAt: new Date().toLocaleDateString('vi-VN'),
         isLocked: false
-      });
+      };
+
+      users.push(newUser);
       saveUsersDb(users);
+      syncUserToCloud(newUser);
       closeAdminCreateUserModal();
       renderAdminDashboard();
       showToast(`Đã tạo khách hàng "${username}" thành công!`, '🎉');
@@ -1357,6 +1535,7 @@
 
       user.pin = newPin;
       saveUsersDb(users);
+      syncUserToCloud(user);
       closeUserChangePinModal();
       showToast('Đã đổi mã PIN mới thành công rực rỡ! 🌸', '🎉');
     }
@@ -1370,7 +1549,7 @@
     function closeRegisterModal() {
       document.getElementById('registerModal').classList.add('hidden');
     }
-    function handleRegister() {
+    async function handleRegister() {
       const username = document.getElementById('regUsername').value.trim();
       const pin = document.getElementById('regPin').value.trim();
 
@@ -1389,13 +1568,16 @@
         return;
       }
 
-      users.push({
+      const newUser = {
         username,
         pin,
         createdAt: new Date().toLocaleDateString('vi-VN'),
         isLocked: false
-      });
+      };
+
+      users.push(newUser);
       saveUsersDb(users);
+      await syncUserToCloud(newUser);
       closeRegisterModal();
 
       saveSession({ username, role: 'client' });
@@ -1740,13 +1922,13 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      getUsersDb();
       currentSession = restoreSession();
-      syncAdsFromCloud();
+      syncAllDataFromCloud();
       setupViewForSession();
 
+      // Tự động kiểm tra và làm mới dữ liệu toàn cầu mỗi 15 giây
       setInterval(() => {
-        syncAdsFromCloud();
+        syncAllDataFromCloud();
       }, 15000);
     });
   </script>
