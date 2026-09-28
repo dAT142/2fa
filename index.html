@@ -31,7 +31,7 @@
               mint: '#70D6BC',
               adminPurple: '#8B5CF6',
               adminDark: '#2E1065',
-              zalo: '#0068FF'
+              telegram: '#24A1DE'
             }
           },
           fontFamily: {
@@ -374,16 +374,20 @@
 
   <!-- ==================== CỤM NÚT TRÒN NỔI Ở GÓC MÀN HÌNH ==================== -->
   <aside class="fixed bottom-[calc(4.5rem+var(--safe-bottom))] md:bottom-8 right-3 sm:right-6 z-40 flex flex-col items-end gap-2.5 pointer-events-auto">
+    <!-- Nút Ủng hộ Donate -->
     <button onclick="openDonateModal()" title="Ủng hộ 1 ly cafe nhé! ☕" class="touch-btn group flex items-center gap-1.5 bg-gradient-to-r from-amber-400 via-sanrio-yellow to-amber-300 hover:from-amber-500 hover:to-amber-400 text-amber-950 p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-amber-300/60 border-2 border-white animate-pulseSubtle transition-all">
       <span class="text-lg sm:text-xl">☕</span>
       <span class="text-xs font-black hidden group-hover:inline-block transition-all pr-1">Ủng hộ team 💕</span>
     </button>
 
-    <a href="https://zalo.me/0567866683" target="_blank" rel="noopener noreferrer" title="Liên hệ Admin qua Zalo (0567.866.683)" class="touch-btn group flex items-center gap-1.5 bg-[#0068FF] hover:bg-blue-600 text-white p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-blue-400/50 border-2 border-white transition-all">
-      <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white flex items-center justify-center text-[#0068FF] font-black text-xs">
-        <span class="font-extrabold font-sans">Z</span>
+    <!-- Nút Liên hệ Admin qua Telegram @phthuyx -->
+    <a href="https://t.me/phthuyx" target="_blank" rel="noopener noreferrer" title="Liên hệ Admin qua Telegram (@phthuyx)" class="touch-btn group flex items-center gap-1.5 bg-[#24A1DE] hover:bg-[#1E88BE] text-white p-2.5 sm:px-3.5 sm:py-2.5 rounded-full shadow-lg shadow-sky-400/50 border-2 border-white transition-all">
+      <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white flex items-center justify-center text-[#24A1DE] font-black text-xs">
+        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+        </svg>
       </div>
-      <span class="text-xs font-black hidden group-hover:inline-block transition-all pr-1">Chat Admin Zalo</span>
+      <span class="text-xs font-black hidden group-hover:inline-block transition-all pr-1">Telegram (@phthuyx)</span>
     </a>
   </aside>
 
@@ -427,7 +431,7 @@
 
         <div>
           <label class="block text-xs font-bold text-purple-900 mb-1">Đường link khi khách bấm vào ảnh (Target URL)</label>
-          <input type="url" id="adTargetUrlInput" placeholder="https://zalo.me/... hoặc link web của bạn" class="w-full bg-white border-2 border-purple-200 rounded-2xl px-4 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-purple-600">
+          <input type="url" id="adTargetUrlInput" placeholder="https://t.me/phthuyx hoặc link web của bạn" class="w-full bg-white border-2 border-purple-200 rounded-2xl px-4 py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-purple-600">
         </div>
 
         <div>
@@ -445,8 +449,10 @@
     </div>
   </div>
 
+  <!-- 💖 MODAL DONATE ĐÃ CẬP NHẬT 2FA.HOTGENZ.COM & QR ĐA NĂNG -->
   <div id="donateModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md">
     <div class="w-full max-w-sm sm:max-w-md bg-white rounded-3xl border-4 border-sanrio-pink shadow-2xl p-4 sm:p-6 text-center relative overflow-hidden max-h-[90dvh] overflow-y-auto custom-scroll animate-heartPop">
+      
       <button onclick="closeDonateModal()" class="absolute top-3 right-3 text-pink-400 hover:text-sanrio-bowRed w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-xl font-black transition-colors">
         &times;
       </button>
@@ -454,7 +460,7 @@
       <div class="flex items-center justify-center gap-1.5 sm:gap-2 mb-1">
         <span class="text-xl sm:text-2xl animate-bounce">☕</span>
         <h3 class="text-lg sm:text-2xl font-black font-display text-sanrio-deepPink uppercase tracking-wide">
-          ỦNG HỘ HOTGENZ.COM
+          ỦNG HỘ 2FA.HOTGENZ.COM
         </h3>
         <span class="text-xl sm:text-2xl animate-bounce">🎀</span>
       </div>
@@ -464,56 +470,50 @@
       </p>
 
       <div class="mt-3.5 p-3 sm:p-4 bg-gradient-to-b from-pink-50 via-white to-pink-50 rounded-2xl border-2 border-sanrio-border shadow-inner">
+        
         <div class="flex items-center justify-center gap-2 mb-2">
-          <span class="text-[11px] sm:text-xs font-black text-white bg-red-600 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-            TECHCOMBANK ❖
+          <span class="text-[11px] sm:text-xs font-black text-white bg-blue-600 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+            QR ĐA NĂNG
           </span>
-          <span class="text-[10px] sm:text-[11px] font-black text-pink-700 bg-pink-100 px-2 py-0.5 rounded-full">VietQR • Napas 247</span>
+          <span class="text-[10px] sm:text-[11px] font-black text-pink-700 bg-pink-100 px-2 py-0.5 rounded-full">Nhận từ mọi Ngân hàng & Ví</span>
         </div>
 
-        <p class="text-xs font-extrabold text-sanrio-dark uppercase tracking-wider">NGUYEN DUC DAT</p>
-        <div class="flex items-center justify-center gap-2 mt-0.5 mb-2.5">
-          <span class="text-base sm:text-lg font-black font-mono text-red-600 tracking-wider">8888 8444 88</span>
-          <button onclick="copyToClipboard('8888844488', 'Đã copy số tài khoản Techcombank!')" class="touch-btn text-[10px] font-black bg-white hover:bg-pink-100 text-pink-600 border border-pink-300 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-sm">
-            <span>Copy STK</span>
-          </button>
-        </div>
+        <p class="text-sm sm:text-base font-extrabold text-sanrio-dark uppercase tracking-wider">CHU THI PHUONG THUY</p>
 
-        <div class="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto bg-white p-2 rounded-2xl border-2 border-dashed border-sanrio-border shadow-sm flex items-center justify-center">
-          <img src="https://img.vietqr.io/image/TCB-8888844488-compact2.png?amount=&addInfo=Ung%20ho%20HOTGENZ.COM&accountName=NGUYEN%20DUC%20DAT" 
-               alt="Mã QR Chuyển Khoản Techcombank" 
+        <!-- Khung ảnh QR Code mới -->
+        <div class="relative w-52 h-52 sm:w-60 sm:h-60 mx-auto bg-white p-2 rounded-2xl border-2 border-dashed border-sanrio-border shadow-sm flex items-center justify-center my-2.5">
+          <img src="image_8683bc.jpg" 
+               alt="Mã QR Chuyển Khoản CHU THI PHUONG THUY" 
                class="w-full h-full object-contain rounded-xl">
         </div>
 
         <div class="mt-3 space-y-1.5 text-left text-xs font-bold text-sanrio-dark bg-white/90 p-2.5 sm:p-3 rounded-xl border border-pink-200">
           <div class="flex justify-between items-center py-0.5 border-b border-pink-100">
-            <span class="text-pink-500 font-extrabold">🏦 Ngân hàng:</span>
-            <span class="font-extrabold text-right">Techcombank</span>
+            <span class="text-pink-500 font-extrabold">👤 Người thụ hưởng:</span>
+            <span class="font-black text-sanrio-dark">CHU THI PHUONG THUY</span>
           </div>
           <div class="flex justify-between items-center py-0.5 border-b border-pink-100">
-            <span class="text-pink-500 font-extrabold">💳 Số tài khoản:</span>
-            <div class="flex items-center gap-1.5">
-              <span class="font-mono font-black text-red-600">8888 8444 88</span>
-              <button onclick="copyToClipboard('8888844488', 'Đã copy số tài khoản!')" class="text-pink-600 hover:text-sanrio-bowRed text-[10px] font-extrabold underline">Copy</button>
-            </div>
-          </div>
-          <div class="flex justify-between items-center py-0.5 border-b border-pink-100">
-            <span class="text-pink-500 font-extrabold">👤 Chủ tài khoản:</span>
-            <span class="font-black">NGUYEN DUC DAT</span>
+            <span class="text-pink-500 font-extrabold">📲 Ứng dụng hỗ trợ:</span>
+            <span class="font-bold text-right text-gray-700">Mọi App Ngân Hàng & Ví Điện Tử</span>
           </div>
           <div class="flex justify-between items-center py-0.5">
             <span class="text-pink-500 font-extrabold">📝 Nội dung CK:</span>
             <div class="flex items-center gap-1.5">
-              <span class="font-bold text-pink-700">Ủng hộ HOTGENZ.COM</span>
-              <button onclick="copyToClipboard('Ủng hộ HOTGENZ.COM', 'Đã copy nội dung chuyển khoản!')" class="text-pink-600 hover:text-sanrio-bowRed text-[10px] font-extrabold underline">Copy</button>
+              <span class="font-bold text-pink-700">Ủng hộ 2FA.HOTGENZ.COM</span>
+              <button onclick="copyToClipboard('Ủng hộ 2FA.HOTGENZ.COM', 'Đã copy nội dung chuyển khoản!')" class="text-pink-600 hover:text-sanrio-bowRed text-[10px] font-extrabold underline">Copy</button>
             </div>
           </div>
         </div>
+
       </div>
 
       <div class="mt-3 text-center">
-        <p class="text-xs font-black text-pink-600">Mọi sự đóng góp đều được trân trọng 💕</p>
-        <p class="text-[11px] font-bold text-pink-500 mt-0.5">Cảm ơn bạn đã đồng hành và ủng hộ team HOTGENZ.COM! 🐾</p>
+        <p class="text-xs font-black text-pink-600">
+          Mọi sự đóng góp đều được trân trọng 💕
+        </p>
+        <p class="text-[11px] font-bold text-pink-500 mt-0.5">
+          Cảm ơn bạn đã đồng hành và ủng hộ team 2FA.HOTGENZ.COM! 🐾
+        </p>
       </div>
 
       <div class="mt-4">
@@ -521,6 +521,7 @@
           Đóng cửa sổ 🌸
         </button>
       </div>
+
     </div>
   </div>
 
@@ -696,7 +697,7 @@
 
     // QUẢN LÝ PHIÊN DUY TRÌ 30 NGÀY
     const SESSION_KEY = 'kitty_auth_session';
-    const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 ngày (ms)
+    const SESSION_DURATION_MS = 30 * 24 * 60 * 60 * 1000;
 
     function saveSession(sessionData) {
       const sessionPayload = {
@@ -714,13 +715,11 @@
         if (!raw) return null;
         const session = JSON.parse(raw);
 
-        // Đã quá 30 ngày -> hết hạn
         if (!session.expiresAt || Date.now() >= session.expiresAt) {
           localStorage.removeItem(SESSION_KEY);
           return null;
         }
 
-        // Nếu là khách hàng -> kiểm tra xem có bị khóa/xóa không
         if (session.role === 'client') {
           const users = getUsersDb();
           const user = users.find(u => u.username.toLowerCase() === session.username.toLowerCase());
@@ -745,7 +744,7 @@
       {
         id: 'global_ad_1',
         imageUrl: 'https://i.ibb.co/0p29nvKZ/8-D8-EF7-D1-252-E-4982-9-B56-F8699-B8-B8-AD8.png',
-        targetUrl: 'https://zalo.me/0567866683',
+        targetUrl: 'https://t.me/phthuyx',
         active: true
       }
     ];
@@ -973,7 +972,6 @@
           return;
         }
 
-        // Lưu phiên đăng nhập 30 ngày cho Admin
         saveSession({ username: 'admin', role: 'admin' });
         setupViewForSession();
         showToast('Xin chào Quản Trị Viên! 👑', '🎀');
@@ -998,7 +996,6 @@
         return;
       }
 
-      // Lưu phiên đăng nhập 30 ngày cho Khách Hàng
       saveSession({ username: user.username, role: 'client' });
       setupViewForSession();
       showToast(`Chào mừng bạn ${user.username} quay trở lại! 🌸`, '✨');
@@ -1021,7 +1018,7 @@
     }
 
     function handleLogout() {
-      clearSession(); // Xóa phiên 30 ngày
+      clearSession();
       if (totpIntervalId) clearInterval(totpIntervalId);
       document.getElementById('loginUsername').value = '';
       document.getElementById('loginPin').value = '';
@@ -1401,7 +1398,6 @@
       saveUsersDb(users);
       closeRegisterModal();
 
-      // Lưu phiên 30 ngày ngay khi đăng ký thành công
       saveSession({ username, role: 'client' });
       setupViewForSession();
       showToast(`Tạo thành công! Chào mừng ${username} 🎀`, '✨');
@@ -1591,7 +1587,7 @@
       }
     }
 
-    /* ==================== 12. SAO CHÉP & BACKUP ==================== */
+    /* ==================== 12. SAO CHÉP & DONATE ==================== */
     function copyOtpCode(code) {
       if (!code || code === '------') return;
       copyToClipboard(code, `Đã sao chép: ${code} 🎀`);
@@ -1745,7 +1741,7 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       getUsersDb();
-      currentSession = restoreSession(); // Khôi phục phiên 30 ngày tự động
+      currentSession = restoreSession();
       syncAdsFromCloud();
       setupViewForSession();
 
